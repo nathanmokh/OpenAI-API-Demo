@@ -72,9 +72,8 @@ async def generate_email_outreach(
 
 @app.post("/api/socialMedia")
 async def gemerate_social_media_post(request_data: SocialMediaPostRequest):
-    
     social_media_platform = request_data.social_media_platform
-    brand = request_data.social_media_platform
+    brand = request_data.brand
     product_or_service = request_data.product_or_service
     product_or_service_name = request_data.product_or_service_name
     product_service_description = request_data.product_service_description
@@ -82,7 +81,7 @@ async def gemerate_social_media_post(request_data: SocialMediaPostRequest):
     age_demographic_min = request_data.age_demographic_min
     age_demographic_max = request_data.age_demographic_min
     use_emojis = request_data.use_emojis
-    
+
     # specify if a product or service is being promoted
     if product_or_service.lower() == "product":
         subject_being_promoted = "product"
@@ -102,15 +101,15 @@ async def gemerate_social_media_post(request_data: SocialMediaPostRequest):
         use_emojis_clause = "Use emojis in the post."
     else:
         use_emojis_clause = "Do not include emojis in the post."
-
     template = f"""
-    Create a social media post on the platform {social_media_platform} on behalf of the {department} team promoting the {brand} brand.
+    Create a social media post on the platform {social_media_platform} on behalf of the {department} 
+    team promoting the {brand} brand.
     The post should promote the {subject_being_promoted} called {product_or_service_name}.
     This is a description of the {subject_being_promoted}: {product_service_description}. 
     Make it funny, relatable, and persuasive. 
+    Make sure to mention the name of the brand being promoted in the post.
     {age_demographic_clause}
     {use_emojis_clause}
-    
     """
 
     result = llm.predict(template)
