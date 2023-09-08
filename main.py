@@ -2,17 +2,23 @@ from fastapi import FastAPI
 from dotenv import load_dotenv
 from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI
-from langchain.prompts.chat import (
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-)
+
+from fastapi.middleware.cors import CORSMiddleware
 import os
+
+from social_media_post_request import SocialMediaPostRequest
 
 load_dotenv()
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Replace with the actual frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 llm = OpenAI(openai_api_key=os.environ.get("OPENAI_API_KEY"), temperature=0.8)
 chat_model = ChatOpenAI()
 
@@ -64,18 +70,19 @@ async def generate_email_outreach(
     return result
 
 
-@app.get("/api/socialMedia")
-async def gemerate_social_media_post(
-    social_media_platform,
-    brand,
-    product_or_service,
-    product_or_service_name,
-    product_service_description,
-    department,
-    age_demographic_min="",
-    age_demographic_max="",
-    use_emojis=False,
-):
+@app.post("/api/socialMedia")
+async def gemerate_social_media_post(request_data: SocialMediaPostRequest):
+    
+    social_media_platform = request_data.social_media_platform
+    brand = request_data.social_media_platform
+    product_or_service = request_data.product_or_service
+    product_or_service_name = request_data.product_or_service_name
+    product_service_description = request_data.product_service_description
+    department = request_data.department
+    age_demographic_min = request_data.age_demographic_min
+    age_demographic_max = request_data.age_demographic_min
+    use_emojis = request_data.use_emojis
+    
     # specify if a product or service is being promoted
     if product_or_service == "product":
         subject_being_promoted = "product"
