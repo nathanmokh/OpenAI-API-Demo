@@ -5,6 +5,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonalVideoIcon from "@mui/icons-material/PersonalVideo";
 import SocialMedia from "./components/SocialMedia";
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import EditIcon from '@mui/icons-material/Edit';
 
 const actions = [
   { icon: <TwitterIcon />, name: "Social Media" },
@@ -44,7 +46,7 @@ function Main() {
         <SpeedDial
           ariaLabel="SpeedDial basic example"
           sx={{ position: "absolute", bottom: 16, right: 16 }}
-          icon={<SpeedDialIcon />}
+          icon={<EditIcon style={{ color: 'white' }} />}
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}

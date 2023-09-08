@@ -47,6 +47,7 @@ const sendDataToServer = async (formData, setGeneratedPostFunction) => {
 };
 
 const departmentOptions = ["Customer Service", "Marketing", "Sales"];
+const productOrServiceOptions = ["Product", "Service"]
 
 function SocialMedia() {
   // State variables to store input values
@@ -121,14 +122,22 @@ function SocialMedia() {
             />
           </Grid>
           <Grid item xs={6}>
-            <TextField
-              fullWidth
-              label="Product or Service"
-              name="product_or_service"
-              value={formData.product_or_service}
-              onChange={handleInputChange}
-              required
-            />
+            <FormControl fullWidth>
+              <InputLabel>Product or Service?</InputLabel>
+              <Select
+                name="product_or_service"
+                value={formData.product_or_service}
+                onChange={handleInputChange}
+                required
+                label="Product or Service?"
+              >
+                {productOrServiceOptions.map((option, index) => (
+                  <MenuItem key={index} value={option}>
+                    {option}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={6}>
             <TextField

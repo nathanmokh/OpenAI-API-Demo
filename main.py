@@ -84,7 +84,7 @@ async def gemerate_social_media_post(request_data: SocialMediaPostRequest):
     use_emojis = request_data.use_emojis
     
     # specify if a product or service is being promoted
-    if product_or_service == "product":
+    if product_or_service.lower() == "product":
         subject_being_promoted = "product"
     else:
         subject_being_promoted = "service"
