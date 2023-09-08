@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Container from "@mui/material/Container";
-import { Grid, SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
+import { Grid, SpeedDial, SpeedDialAction } from "@mui/material";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonalVideoIcon from "@mui/icons-material/PersonalVideo";
 import SocialMedia from "./components/SocialMedia";
-import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import EditIcon from '@mui/icons-material/Edit';
+import Marketing from "./components/Marketing";
+import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
+import EditIcon from "@mui/icons-material/Edit";
+import Email from "./components/Email";
 
 const actions = [
   { icon: <TwitterIcon />, name: "Social Media" },
@@ -27,11 +29,11 @@ function Main() {
     switch (selectedOption) {
       case "Social Media":
         // return "This is Social Media text.";
-        return <SocialMedia />
+        return <SocialMedia />;
       case "Email":
-        return "This is Email text.";
+        return <Email />;
       case "Marketing":
-        return "This is Marketing text.";
+        return <Marketing />;
       default:
         return "Select an option to see the text.";
     }
@@ -46,7 +48,7 @@ function Main() {
         <SpeedDial
           ariaLabel="SpeedDial basic example"
           sx={{ position: "absolute", bottom: 16, right: 16 }}
-          icon={<EditIcon style={{ color: 'white' }} />}
+          icon={<EditIcon style={{ color: "white" }} />}
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}

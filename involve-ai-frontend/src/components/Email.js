@@ -47,9 +47,9 @@ const sendDataToServer = async (formData, setGeneratedPostFunction) => {
 };
 
 const departmentOptions = ["Customer Service", "Marketing", "Sales"];
-const productOrServiceOptions = ["Product", "Service"]
+const productOrServiceOptions = ["Product", "Service"];
 
-function Marketing() {
+function Email() {
   // State variables to store input values
   const [formData, setFormData] = useState({
     social_media_platform: "",
@@ -86,7 +86,7 @@ function Marketing() {
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
-        Create a Marketing Strategy
+        Create an Email
       </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
@@ -219,4 +219,4 @@ function Marketing() {
   );
 }
 
-export default Marketing;
+export default Email;
