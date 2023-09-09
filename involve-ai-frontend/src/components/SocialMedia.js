@@ -212,9 +212,8 @@ function SocialMedia() {
           Create Post
         </Button>
       </form>
-      <Card>
+      <br />
         <h1>{generated_post}</h1>
-      </Card>
     </Container>
   );
 }

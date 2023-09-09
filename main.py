@@ -6,7 +6,7 @@ from langchain.chat_models import ChatOpenAI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 
-from social_media_post_request import SocialMediaPostRequest
+from utils.request_objects import SocialMediaPostRequest, EmailRequest
 
 load_dotenv()
 
@@ -33,24 +33,27 @@ async def test():
 # TODO: change these to POST requests
 
 
-@app.get("/api/email")
+@app.post("/api/email")
 async def generate_email_outreach(
-    sender_name,
-    sender_company_name,
-    sender_email,
-    sender_phone_number,
-    sender_occupation,
-    prospect_company,
-    prospect_name,
-    prospect_industry,
-    prospect_occupation,
-    is_cold_email,
-    product,
+    request_data: EmailRequest,
 ):
+    sender_name = request_data.sender_name
+    sender_company_name = request_data.sender_company_name
+    sender_email = request_data.sender_email
+    sender_phone_number = request_data.sender_phone_number
+    sender_occupation = request_data.sender_occupation
+    prospect_company = request_data.prospect_company
+    prospect_name = request_data.prospect_name
+    prospect_industry = request_data.prospect_industry
+    prospect_occupation = request_data.prospect_occupation
+    is_cold_email = request_data.is_cold_email
+    product = request_data.product
+
     if is_cold_email:
         cold_clause = "has not"
     else:
         cold_clause = "has"
+
     template = f"""
     You are a helpful assistant that creates outreach emails for 
     {sender_name} working at {sender_company_name} with the role of {sender_occupation} targeting
@@ -102,8 +105,8 @@ async def gemerate_social_media_post(request_data: SocialMediaPostRequest):
     else:
         use_emojis_clause = "Do not include emojis in the post."
     template = f"""
-    Create a social media post on the platform {social_media_platform} on behalf of the {department} 
-    team promoting the {brand} brand.
+    Create a social media post on the platform {social_media_platform} on from the point of view
+    of the {department} team promoting the {brand} brand.
     The post should promote the {subject_being_promoted} called {product_or_service_name}.
     This is a description of the {subject_being_promoted}: {product_service_description}. 
     Make it funny, relatable, and persuasive. 

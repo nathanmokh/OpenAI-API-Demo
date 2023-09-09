@@ -32,7 +32,7 @@ const sendDataToServer = async (formData, setGeneratedPostFunction) => {
       // Add any other headers as needed
     };
     // Replace with your server endpoint URL
-    const url = "http://127.0.0.1:8000/api/socialMedia"; // Change this to your server's URL
+    const url = "http://127.0.0.1:8000/api/email"; // Change this to your server's URL
 
     // Send a POST request to your server with the form data
     const response = await axios.post(url, formData, { headers });
@@ -52,23 +52,25 @@ const productOrServiceOptions = ["Product", "Service"];
 function Email() {
   // State variables to store input values
   const [formData, setFormData] = useState({
-    social_media_platform: "",
-    brand: "",
-    product_or_service: "",
-    product_or_service_name: "",
-    product_service_description: "",
-    department: "",
-    age_demographic_min: "",
-    age_demographic_max: "",
-    use_emojis: false,
+    sender_name: "",
+    sender_company_name: "",
+    sender_email: "",
+    sender_phone_number: "",
+    sender_occupation: "",
+    prospect_company: "",
+    prospect_name: "",
+    prospect_industry: "",
+    prospect_occupation: "",
+    is_cold_email: false,
+    product: "",
   });
-  const [generated_post, set_generated_post] = useState("");
+  const [generated_email, set_generated_email] = useState("");
 
   // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-
     const inputValue = type === "checkbox" ? checked : value;
+
     setFormData({
       ...formData,
       [name]: inputValue,
@@ -78,7 +80,7 @@ function Email() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendDataToServer(formData, set_generated_post);
+    sendDataToServer(formData, set_generated_email);
     // You can perform actions with the form data here
     console.log(formData);
   };
@@ -90,130 +92,123 @@ function Email() {
       </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <FormControl fullWidth>
-              <InputLabel>Social Media Platform</InputLabel>
-              <Select
-                name="social_media_platform"
-                value={formData.social_media_platform}
-                onChange={handleInputChange}
-                required
-                label={"Social Media Platform"}
-              >
-                {socialMediaPlatforms.map((platform, index) => (
-                  <MenuItem key={index} value={platform.name}>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      {platform.icon}
-                      <span style={{ marginLeft: "8px" }}>{platform.name}</span>
-                    </div>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
           <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Brand"
-              name="brand"
-              value={formData.brand}
+              label="Sender Name"
+              name="sender_name"
+              value={formData.sender_name}
               onChange={handleInputChange}
               required
             />
           </Grid>
           <Grid item xs={6}>
-            <FormControl fullWidth>
-              <InputLabel>Product or Service?</InputLabel>
-              <Select
-                name="product_or_service"
-                value={formData.product_or_service}
-                onChange={handleInputChange}
-                required
-                label="Product or Service?"
-              >
-                {productOrServiceOptions.map((option, index) => (
-                  <MenuItem key={index} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Product or Service Name"
-              name="product_or_service_name"
-              value={formData.product_or_service_name}
-              onChange={handleInputChange}
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Product/Service Description"
-              name="product_service_description"
-              value={formData.product_service_description}
+              label="Sender Company Name"
+              name="sender_company_name"
+              value={formData.sender_company_name}
               onChange={handleInputChange}
               required
             />
           </Grid>
           <Grid item xs={6}>
-            <FormControl fullWidth>
-              <InputLabel>Department</InputLabel>
-              <Select
-                name="department"
-                value={formData.department}
-                onChange={handleInputChange}
-                required
-                label="Department"
-              >
-                {departmentOptions.map((option, index) => (
-                  <MenuItem key={index} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}>
             <TextField
               fullWidth
-              label="Min Age Demographic"
-              name="age_demographic_min"
-              type="number"
-              value={formData.age_demographic_min}
+              label="Sender Email"
+              name="sender_email"
+              value={formData.sender_email}
               onChange={handleInputChange}
+              required
             />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={6}>
             <TextField
               fullWidth
-              label="Max Age Demographic"
-              name="age_demographic_max"
-              type="number"
-              value={formData.age_demographic_max}
+              label="Sender Phone Number"
+              name="sender_phone_number"
+              value={formData.sender_phone_number}
               onChange={handleInputChange}
+              required
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Sender Occupation"
+              name="sender_occupation"
+              value={formData.sender_occupation}
+              onChange={handleInputChange}
+              required
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Prospect Company"
+              name="prospect_company"
+              value={formData.prospect_company}
+              onChange={handleInputChange}
+              required
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Prospect Name"
+              name="prospect_name"
+              value={formData.prospect_name}
+              onChange={handleInputChange}
+              required
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Prospect Industry"
+              name="prospect_industry"
+              value={formData.prospect_industry}
+              onChange={handleInputChange}
+              required
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Prospect Occupation"
+              name="prospect_occupation"
+              value={formData.prospect_occupation}
+              onChange={handleInputChange}
+              required
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Product"
+              name="product"
+              value={formData.product}
+              onChange={handleInputChange}
+              required
             />
           </Grid>
           <Grid item xs={12}>
             <label>
-              Use Emojis
+              Cold Email?
               <Checkbox
-                name="use_emojis"
-                checked={formData.use_emojis}
+                name="is_cold_email"
+                checked={formData.is_cold_email}
                 onChange={handleInputChange}
               />
             </label>
           </Grid>
         </Grid>
         <Button type="submit" variant="contained" color="primary">
-          Create Post
+          Create Email
         </Button>
       </form>
       <Card>
-        <h1>{generated_post}</h1>
+        <h1>{generated_email}</h1>
       </Card>
     </Container>
   );
