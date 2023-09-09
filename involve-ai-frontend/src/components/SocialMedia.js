@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import {
-  Card,
   Checkbox,
   FormControl,
   InputLabel,
@@ -32,7 +31,7 @@ const sendDataToServer = async (formData, setGeneratedPostFunction) => {
       // Add any other headers as needed
     };
     // Replace with your server endpoint URL
-    const url = "http://127.0.0.1:8000/api/socialMedia"; // Change this to your server's URL
+    const url = "http://127.0.0.1:8080/api/socialMedia"; // Change this to your server's URL
 
     // Send a POST request to your server with the form data
     const response = await axios.post(url, formData, { headers });
@@ -47,7 +46,7 @@ const sendDataToServer = async (formData, setGeneratedPostFunction) => {
 };
 
 const departmentOptions = ["Customer Service", "Marketing", "Sales"];
-const productOrServiceOptions = ["Product", "Service"]
+const productOrServiceOptions = ["Product", "Service"];
 
 function SocialMedia() {
   // State variables to store input values
@@ -213,7 +212,9 @@ function SocialMedia() {
         </Button>
       </form>
       <br />
+      <Paper>
         <h1>{generated_post}</h1>
+      </Paper>
     </Container>
   );
 }

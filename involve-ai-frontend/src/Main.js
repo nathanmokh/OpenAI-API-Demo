@@ -13,7 +13,7 @@ import Email from "./components/Email";
 const actions = [
   { icon: <TwitterIcon />, name: "Social Media" },
   { icon: <EmailIcon />, name: "Email" },
-  { icon: <PersonalVideoIcon />, name: "Marketing" },
+  // { icon: <PersonalVideoIcon />, name: "Marketing" },
 ];
 
 function Main() {
@@ -32,10 +32,10 @@ function Main() {
         return <SocialMedia />;
       case "Email":
         return <Email />;
-      case "Marketing":
-        return <Marketing />;
+      // case "Marketing":
+      //   return <Marketing />;
       default:
-        return "Select an option to see the text.";
+        return "Welcome to my app, click the button on the bottom right to get started.";
     }
   };
 

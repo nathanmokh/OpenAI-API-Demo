@@ -25,3 +25,4 @@ class EmailRequest(BaseModel):
     prospect_occupation: str
     is_cold_email: bool
     product: str
+    product_description: str = ""

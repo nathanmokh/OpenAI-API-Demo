@@ -4,15 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import {
-  Card,
-  Checkbox,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Paper,
-  Select,
-} from "@mui/material";
+import { Checkbox, Paper } from "@mui/material";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -32,7 +24,7 @@ const sendDataToServer = async (formData, setGeneratedPostFunction) => {
       // Add any other headers as needed
     };
     // Replace with your server endpoint URL
-    const url = "http://127.0.0.1:8000/api/email"; // Change this to your server's URL
+    const url = "http://127.0.0.1:8080/api/email"; // Change this to your server's URL
 
     // Send a POST request to your server with the form data
     const response = await axios.post(url, formData, { headers });
@@ -63,6 +55,7 @@ function Email() {
     prospect_occupation: "",
     is_cold_email: false,
     product: "",
+    product_description: "",
   });
   const [generated_email, set_generated_email] = useState("");
 
@@ -193,6 +186,15 @@ function Email() {
             />
           </Grid>
           <Grid item xs={12}>
+            <TextField
+              fullWidth
+              label="Product Description"
+              name="product_description"
+              value={formData.product_description}
+              onChange={handleInputChange}
+            />
+          </Grid>
+          <Grid item xs={12}>
             <label>
               Cold Email?
               <Checkbox
@@ -207,9 +209,9 @@ function Email() {
           Create Email
         </Button>
       </form>
-      <Card>
+      <Paper>
         <h1>{generated_email}</h1>
-      </Card>
+      </Paper>
     </Container>
   );
 }
