@@ -1,11 +1,12 @@
 import os
 from langchain import OpenAI
+from utils.get_secrets import get_openai_api_key
 from utils.request_objects import EmailRequest, SocialMediaPostRequest
 
 
 class ContentGenerator:
     llm = OpenAI(
-        openai_api_key="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",
+        openai_api_key=get_openai_api_key(),
         temperature=0.7,
     )
 
