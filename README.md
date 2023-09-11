@@ -1,4 +1,13 @@
 <h1>OpenAI API Demo</h1>
+<h2> Tools Used </h2>
+<ul>
+    <li>FastAPI</li>
+    <li>React.js</li>
+    <li>Amazon ECS</li>
+    <li>Docker</li>
+    <li>Langchain</li>
+    <li>OpenAI API</li>
+</ul>
 <h2>Getting Started</h2>
 <p>To start, clone the repository and install the software necessary to run the project. You will need
 <ul>
