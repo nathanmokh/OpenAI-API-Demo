@@ -21,6 +21,6 @@ Run everything with docker-compose
     <li> Switch to the ECS context (with your IAM account setup) with <code> docker context use *yourECScontextnamehere*</code> then run <code> docker compose up </code> while in the same directory as the <code>docker-compose.yml</code> file. This will build and deploy the application to ECS.
 </ol>
 
-<p> Finally, the frontend endpoint deployment can be accessed <a href="inolv-LoadB-FGA7K0OPYOZB-2053e03bfd630ded.elb.us-east-1.amazonaws.com:3000">here</a> and the backend endpoint can be accessed <a href="inolv-LoadB-FGA7K0OPYOZB-2053e03bfd630ded.elb.us-east-1.amazonaws.com:8080">here</a>.
+<p> Finally, the frontend endpoint deployment can be accessed at inolv-LoadB-FGA7K0OPYOZB-2053e03bfd630ded.elb.us-east-1.amazonaws.com:3000 and the backend endpoint can be accessed at inolv-LoadB-FGA7K0OPYOZB-2053e03bfd630ded.elb.us-east-1.amazonaws.com:8080.</p>
 
 
