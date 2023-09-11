@@ -20,6 +20,11 @@ app.add_middleware(
 # use to test frontend up and running
 @app.get("/")
 async def test():
+    """Use to test application
+
+    Returns:
+        dict: hello world message
+    """
     return {"message": "hello world"}
 
 
@@ -27,6 +32,15 @@ async def test():
 async def create_email_outreach(
     request_data: EmailRequest,
 ):
+    """
+    Creates an email from the perspective of a marketing, sales, or customer service role
+
+    Args:
+        request_data (EmailRequest): Request object with detials for GPT template
+
+    Returns:
+        JSONResponse: response payload for frontend
+    """
     response = ContentGenerator().generate_email_outreach(request_data)
     return JSONResponse(
         content=response,
@@ -36,6 +50,15 @@ async def create_email_outreach(
 
 @app.post("/api/socialMedia")
 async def create_social_media_post(request_data: SocialMediaPostRequest):
+    """
+    Creates a social media post from perspective of a marketing, sales, or customer service role,
+
+    Args:
+        request_data (SocialMediaPostRequest): Request object with details for GPT template
+
+    Returns:
+        JSONResponse: response payload for frontend
+    """
     response = ContentGenerator().generate_social_media_post(request_data)
     return JSONResponse(
         content=response,
