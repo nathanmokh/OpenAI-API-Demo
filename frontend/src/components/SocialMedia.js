@@ -27,11 +27,11 @@ const socialMediaPlatforms = [
 const sendDataToServer = async (formData, setGeneratedPostFunction) => {
   try {
     const headers = {
-      "Content-Type": "application/json", // Make sure this matches your server's expectations
-      // Add any other headers as needed
+      "Content-Type": "application/json", 
     };
     // Replace with your server endpoint URL
-    const url = "http://127.0.0.1:8080/api/socialMedia"; // Change this to your server's URL
+    const url = "http://inolv-LoadB-FGA7K0OPYOZB-2053e03bfd630ded.elb.us-east-1.amazonaws.com:8080/api/socialMedia"; // Change this to your server's URL
+    console.log("Sending data to " + url)
 
     // Send a POST request to your server with the form data
     const response = await axios.post(url, formData, { headers });

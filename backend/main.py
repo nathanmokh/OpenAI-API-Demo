@@ -4,18 +4,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from src.models import ContentGenerator
 
 from utils.request_objects import SocialMediaPostRequest, EmailRequest
+from fastapi.responses import JSONResponse
 
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Replace with the actual frontend URL
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
+# use to test frontend up and running
 @app.get("/")
 async def test():
     return {"message": "hello world"}
@@ -25,12 +27,20 @@ async def test():
 async def create_email_outreach(
     request_data: EmailRequest,
 ):
-    return ContentGenerator().generate_email_outreach(request_data)
+    response = ContentGenerator().generate_email_outreach(request_data)
+    return JSONResponse(
+        content=response,
+        headers={"Access-Control-Allow-Origin": "*"},
+    )
 
 
 @app.post("/api/socialMedia")
 async def create_social_media_post(request_data: SocialMediaPostRequest):
-    return ContentGenerator().generate_social_media_post(request_data)
+    response = ContentGenerator().generate_social_media_post(request_data)
+    return JSONResponse(
+        content=response,
+        headers={"Access-Control-Allow-Origin": "*"},
+    )
 
 
 @app.get("/api/marketingStrategy")

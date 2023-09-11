@@ -2,18 +2,13 @@ import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import { Grid, SpeedDial, SpeedDialAction } from "@mui/material";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import EmailIcon from "@mui/icons-material/Email";
 import PersonalVideoIcon from "@mui/icons-material/PersonalVideo";
 import SocialMedia from "./components/SocialMedia";
-import Marketing from "./components/Marketing";
-import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import EditIcon from "@mui/icons-material/Edit";
 import Email from "./components/Email";
 
 const actions = [
   { icon: <TwitterIcon />, name: "Social Media" },
-  { icon: <EmailIcon />, name: "Email" },
-  // { icon: <PersonalVideoIcon />, name: "Marketing" },
 ];
 
 function Main() {
@@ -28,12 +23,9 @@ function Main() {
   const renderSelectedText = () => {
     switch (selectedOption) {
       case "Social Media":
-        // return "This is Social Media text.";
         return <SocialMedia />;
       case "Email":
         return <Email />;
-      // case "Marketing":
-      //   return <Marketing />;
       default:
         return "Welcome to my app, click the button on the bottom right to get started.";
     }

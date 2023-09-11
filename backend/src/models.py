@@ -57,6 +57,9 @@ class ContentGenerator:
         return result
 
     def generate_social_media_post(self, request_data: SocialMediaPostRequest):
+        """
+        Reads pydantic object, pulls out attributes, processes request.
+        """
         social_media_platform = request_data.social_media_platform
         brand = request_data.brand
         product_or_service = request_data.product_or_service
@@ -73,6 +76,7 @@ class ContentGenerator:
         else:
             subject_being_promoted = "service"
 
+        # include an age demographic if desired
         if age_demographic_min and age_demographic_max:
             age_demographic_clause = f"""This post will be meant to target people 
             between the ages of {age_demographic_min} and {age_demographic_max}. 
@@ -82,6 +86,7 @@ class ContentGenerator:
                 "This post will be meant to target people from any age demographic."
             )
 
+        # add an image for instagram posts
         if social_media_platform.lower() == "instagram":
             image_creation_clause = "Include a suggestion for an image with the post."
         else:

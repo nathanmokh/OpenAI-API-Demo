@@ -5,15 +5,13 @@ services:
     build: ./backend
     ports:
     - "8080:8080"
-    volumes: 
-    - ./backend:/app/backend
+    image: nathanmokh1/my-images:backend-v1.0
     env_file:
       - ./backend/.env
   frontend:
     build: ./frontend
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/app
+    image: nathanmokh1/my-images:frontend-v1.0
     depends_on:
       - backend
