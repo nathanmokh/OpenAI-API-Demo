@@ -7,8 +7,10 @@ import SocialMedia from "./components/SocialMedia";
 import EditIcon from "@mui/icons-material/Edit";
 import Email from "./components/Email";
 
+// email component is having issues with deployment, commenting it out
 const actions = [
   { icon: <TwitterIcon />, name: "Social Media" },
+  // { icon: <EmailIcon />, name: "Email" },
 ];
 
 function Main() {
@@ -23,6 +25,7 @@ function Main() {
   const renderSelectedText = () => {
     switch (selectedOption) {
       case "Social Media":
+        // return "This is Social Media text.";
         return <SocialMedia />;
       case "Email":
         return <Email />;
