@@ -27,7 +27,7 @@ const socialMediaPlatforms = [
 const sendDataToServer = async (formData, setGeneratedPostFunction) => {
   try {
     const headers = {
-      "Content-Type": "application/json", 
+      "Content-Type": "application/json",
     };
     // Replace with your server endpoint URL
     const url = "http://inolv-LoadB-FGA7K0OPYOZB-2053e03bfd630ded.elb.us-east-1.amazonaws.com:8080/api/socialMedia"; // Change this to your server's URL
@@ -85,13 +85,13 @@ function SocialMedia() {
   return (
     <Container>
       <Typography variant="h4" gutterBottom>
-        Create a Social Media Post
+        Generate a Social Media Post!
       </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <FormControl fullWidth>
-              <InputLabel>Social Media Platform</InputLabel>
+              <InputLabel>Social Media Platform *</InputLabel>
               <Select
                 name="social_media_platform"
                 value={formData.social_media_platform}
@@ -117,12 +117,13 @@ function SocialMedia() {
               name="brand"
               value={formData.brand}
               onChange={handleInputChange}
+              placeholder="Example: Epic Games"
               required
             />
           </Grid>
           <Grid item xs={6}>
             <FormControl fullWidth>
-              <InputLabel>Product or Service?</InputLabel>
+              <InputLabel>Product or Service? *</InputLabel>
               <Select
                 name="product_or_service"
                 value={formData.product_or_service}
@@ -145,6 +146,7 @@ function SocialMedia() {
               name="product_or_service_name"
               value={formData.product_or_service_name}
               onChange={handleInputChange}
+              placeholder="Example: Unreal Engine 5"
               required
             />
           </Grid>
@@ -155,12 +157,13 @@ function SocialMedia() {
               name="product_service_description"
               value={formData.product_service_description}
               onChange={handleInputChange}
+              placeholder="Example: A new video game engine with cutting edge graphics!"
               required
             />
           </Grid>
           <Grid item xs={6}>
             <FormControl fullWidth>
-              <InputLabel>Department</InputLabel>
+              <InputLabel>Department *</InputLabel>
               <Select
                 name="department"
                 value={formData.department}
@@ -215,6 +218,13 @@ function SocialMedia() {
       <Paper>
         <h1>{generated_post}</h1>
       </Paper>
+      <Typography>
+        Note: This was a small project I built for a programming challenge, it automates creating a social media
+        post for you. This tool uses the Langchain Library, OpenAI API, and I put it together using FastAPI and Docker. My FastAPI
+        instance and React UI instance (the one you're currently interacting with) are currently deployed to AWS ECS behind load balancers independently, meaning they operate as 
+        independent microservices and can scale up separately depending on load. The code for this is, including the deployment process, is hosted on my GitHub
+        (linked in the UI component on the bottom right of your screen).
+      </Typography>
     </Container>
   );
 }
