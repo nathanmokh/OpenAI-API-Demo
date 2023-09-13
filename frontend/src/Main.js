@@ -36,27 +36,29 @@ function Main() {
 
   return (
     <div className="Main">
-      <Container fixed>
+      <Container maxWidth='xs'>
         <Grid spacing={10}>
           <div>{renderSelectedText()}</div>
         </Grid>
-        <SpeedDial
-          ariaLabel="SpeedDial basic example"
-          sx={{ position: "absolute", bottom: 16, right: 16 }}
-          icon={<EditIcon style={{ color: "white" }} />}
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
-          open={open}
-        >
-          {actions.map((action) => (
-            <SpeedDialAction
-              key={action.name}
-              icon={action.icon}
-              tooltipTitle={action.name}
-              onClick={() => handleOptionSelect(action.name)}
-            />
-          ))}
-        </SpeedDial>
+        <div>
+          <SpeedDial
+            ariaLabel="SpeedDial basic example"
+            // sx={{ position: "absolute", bottom: 16, right: 16 }}
+            icon={<EditIcon style={{ color: "white" }} />}
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
+            open={open}
+          >
+            {actions.map((action) => (
+              <SpeedDialAction
+                key={action.name}
+                icon={action.icon}
+                tooltipTitle={action.name}
+                onClick={() => handleOptionSelect(action.name)}
+              />
+            ))}
+          </SpeedDial>
+        </div>
       </Container>
     </div>
   );
