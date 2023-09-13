@@ -3,16 +3,15 @@ import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SocialMedia from './components/SocialMedia';
-import Email from './components/Email';
 import Home from './components/Home';
 import { SpeedDial, SpeedDialAction, SpeedDialIcon } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import DescriptionIcon from "@mui/icons-material/Description";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
+import Resume from './components/Resume';
 
 const actions = [
     { icon: <HomeIcon />, name: "Home" },
@@ -29,6 +28,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/createSocialPost" element={<SocialMedia />} />
+                    <Route path="/resume" element={<Resume />} />
                 </Routes>
             </div>
         </Router>

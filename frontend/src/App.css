@@ -1,11 +1,15 @@
 .App {
   text-align: center;
   display: flex;
-  flex-direction: column; /* Center vertically */
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  height: 100vh; /* Ensure the container covers the entire viewport height */
-
+  flex-direction: column;
+  /* Center vertically */
+  align-items: center;
+  /* Center horizontally */
+  justify-content: center;
+  /* Center vertically */
+  height: 100vh;
+  /* Ensure the container covers the entire viewport height */
+  background-color: #d1d1d1c9;
 }
 
 .App-logo {
@@ -38,6 +42,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

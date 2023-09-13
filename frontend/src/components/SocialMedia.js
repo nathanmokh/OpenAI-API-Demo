@@ -221,7 +221,7 @@ function SocialMedia() {
       <Typography>
         Note: This was a small project I built for a programming challenge, it automates creating a social media
         post for you. This tool uses the Langchain Library, OpenAI API, and I put it together using FastAPI and Docker. My FastAPI
-        instance and React UI instance (the one you're currently interacting with) are currently deployed to AWS ECS behind load balancers independently, meaning they operate as 
+        instance and React UI instance (the one you're currently interacting with) are currently deployed to AWS ECS behind load balancers independently, meaning they operate as
         independent microservices and can scale up separately depending on load. The code for this is, including the deployment process, is hosted on my GitHub
         (linked in the UI component on the bottom right of your screen).
       </Typography>
